@@ -9,165 +9,60 @@
 </head>
 <body>
     <main>
-        <div class="grid">
-            <div class="card">
-                <h2>Chilquinta</h2>
-                <div class="fecha-vencimiento">
-                    Vence el <span class="dia-span">11</span> de cada mes
-                </div>
-                <button class="pago-btn" data-url="https://www.chilquinta.cl/pagoenlinea" onclick="redirigir(this.dataset.url)">Pagar ahora</button>
-                <div class="estado-pago">
-                    <div class="custom-select" tabindex="0">
-                        <select class="select-hidden" onchange="actualizarEstado('chilquinta', this.value)">
-                            <option value="pendiente">Pendiente</option>
-                            <option value="pagado">Pagado</option>
-                        </select>
-                        <div class="select-selected">Pendiente</div>
-                        <div class="select-items">
-                            <div class="select-item" data-value="pendiente">Pendiente</div>
-                            <div class="select-item" data-value="pagado">Pagado</div>
-                        </div>
-                    </div>
-                </div>
+        <div class="grid" id="gridServicios"></div>
+    </main>
+
+    <div id="modalServicio" class="modal">
+        <div class="modal-contenido">
+            <div class="modal-header">
+                <h2 id="tituloModalServicio">Nuevo Servicio</h2>
+                <span class="cerrar" onclick="cerrarModalServicio()">&times;</span>
             </div>
-            
-            <div class="card">
-                <h2>Esval</h2>
-                <div class="fecha-vencimiento">
-                    Vence el <span class="dia-span">18</span> de cada mes
-                </div>
-                <button class="pago-btn" data-url="https://www.esval.cl/personas/inicio?pago-rapido" onclick="redirigir(this.dataset.url)">Pagar ahora</button>
-                <div class="estado-pago">
-                    <div class="custom-select" tabindex="0">
-                        <select class="select-hidden" onchange="actualizarEstado('esval', this.value)">
-                            <option value="pendiente">Pendiente</option>
-                            <option value="pagado">Pagado</option>
-                        </select>
-                        <div class="select-selected">Pendiente</div>
-                        <div class="select-items">
-                            <div class="select-item" data-value="pendiente">Pendiente</div>
-                            <div class="select-item" data-value="pagado">Pagado</div>
-                        </div>
+            <div class="modal-body">
+                <form id="formServicio" onsubmit="guardarServicio(event)">
+                    <input type="hidden" id="servicioId">
+                    <div class="form-group">
+                        <label>Nombre del Servicio</label>
+                        <input type="text" id="nombreServicio" required placeholder="Ej: Netflix">
                     </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h2>Claro Chile</h2>
-                <div class="fecha-vencimiento">
-                    Vence el <span class="dia-span">30</span> de cada mes
-                </div>
-                <button class="pago-btn" data-url="https://sucursalvirtual.clarochile.cl/PagoExpress/index" onclick="redirigir(this.dataset.url)">Pagar ahora</button>
-                <div class="estado-pago">
-                    <div class="custom-select" tabindex="0">
-                        <select class="select-hidden" onchange="actualizarEstado('claro', this.value)">
-                            <option value="pendiente">Pendiente</option>
-                            <option value="pagado">Pagado</option>
-                        </select>
-                        <div class="select-selected">Pendiente</div>
-                        <div class="select-items">
-                            <div class="select-item" data-value="pendiente">Pendiente</div>
-                            <div class="select-item" data-value="pagado">Pagado</div>
-                        </div>
+                    <div class="form-group">
+                        <label>Día de Vencimiento</label>
+                        <input type="number" id="diaVencimiento" required min="1" max="31" placeholder="Ej: 15">
                     </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h2>Entel</h2>
-                <div class="fecha-vencimiento">
-                    Vence el <span class="dia-span">8</span> de cada mes
-                </div>
-                <button class="pago-btn" data-url="https://miperfil.entel.cl/CL_Web_Unified_Payment_EU/" onclick="redirigir(this.dataset.url)">Pagar ahora</button>
-                <div class="estado-pago">
-                    <div class="custom-select" tabindex="0">
-                        <select class="select-hidden" onchange="actualizarEstado('entel', this.value)">
-                            <option value="pendiente">Pendiente</option>
-                            <option value="pagado">Pagado</option>
-                        </select>
-                        <div class="select-selected">Pendiente</div>
-                        <div class="select-items">
-                            <div class="select-item" data-value="pendiente">Pendiente</div>
-                            <div class="select-item" data-value="pagado">Pagado</div>
-                        </div>
+                    <div class="form-group">
+                        <label>Link de Pago</label>
+                        <input type="url" id="urlPago" required placeholder="https://...">
                     </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h2>Movistar</h2>
-                <div class="fecha-vencimiento">
-                    Vence el <span class="dia-span">29</span> de cada mes
-                </div>
-                <button class="pago-btn" data-url="https://pagos.movistar.cl/publico" onclick="redirigir(this.dataset.url)">Pagar ahora</button>
-                <div class="estado-pago">
-                    <div class="custom-select" tabindex="0">
-                        <select class="select-hidden" onchange="actualizarEstado('movistar', this.value)">
-                            <option value="pendiente">Pendiente</option>
-                            <option value="pagado">Pagado</option>
-                        </select>
-                        <div class="select-selected">Pendiente</div>
-                        <div class="select-items">
-                            <div class="select-item" data-value="pendiente">Pendiente</div>
-                            <div class="select-item" data-value="pagado">Pagado</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h2>Wom</h2>
-                <div class="fecha-vencimiento">
-                    Vence el <span class="dia-span">5</span> de cada mes
-                </div>
-                <button class="pago-btn" data-url="https://www.wom.cl/paga-aqui/" onclick="redirigir(this.dataset.url)">Pagar ahora</button>
-                <div class="estado-pago">
-                    <div class="custom-select" tabindex="0">
-                        <select class="select-hidden" onchange="actualizarEstado('wom', this.value)">
-                            <option value="pendiente">Pendiente</option>
-                            <option value="pagado">Pagado</option>
-                        </select>
-                        <div class="select-selected">Pendiente</div>
-                        <div class="select-items">
-                            <div class="select-item" data-value="pendiente">Pendiente</div>
-                            <div class="select-item" data-value="pagado">Pagado</div>
-                        </div>
-                    </div>
-                </div>
+                    <button type="submit" class="pago-btn" style="width: 100%; margin-top: 20px;">Guardar</button>
+                </form>
             </div>
         </div>
-    </main>
+    </div>
+
     <div id="modalHistorial" class="modal">
         <div class="modal-contenido">
             <div class="modal-header">
                 <h2>Historial de Pagos</h2>
-                <span class="cerrar">&times;</span>
+                <span class="cerrar" onclick="cerrarModalHistorial()">&times;</span>
             </div>
             <div class="modal-body">
                 <div class="filtros">
-                    <select id="filtroServicio">
-                        <option value="todos">Todos los servicios</option>
-                        <option value="claro">Claro Chile</option>
-                        <option value="chilquinta">Chilquinta</option>
-                        <option value="esval">Esval</option>
-                        <option value="entel">Entel</option>
-                        <option value="movistar">Movistar</option>
-                        <option value="wom">Wom</option>
-                    </select>
+                    <select id="filtroServicio"></select>
                     <button id="limpiarHistorial" class="btn-secundario">Limpiar Historial</button>
                 </div>
                 <div id="listaHistorial" class="lista-historial"></div>
             </div>
         </div>
     </div>
-    <button id="btnHistorial" class="btn-flotante">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-        </svg>
-    </button>
+    
+    <div class="botones-flotantes">
+        <button onclick="abrirModalServicio()" class="btn-flotante" title="Agregar Servicio">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        </button>
+        <button id="btnHistorial" class="btn-flotante" title="Ver Historial" style="background: #4a148c;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </button>
+    </div>
     
     <footer>
         <img src="https://cdn.7tv.app/emote/01H07F15D00002ETD2HQRT8J3Z/4x.webp" alt="gif-keepitsimple" width="80" height="80">
